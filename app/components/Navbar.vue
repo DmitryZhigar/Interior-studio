@@ -1,0 +1,118 @@
+<template>
+
+  <header
+    class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10"
+  >
+
+    <div class="max-w-7xl mx-auto px-4 lg:px-10">
+
+      <div class="h-24 flex items-center justify-between">
+
+        <!-- LOGO -->
+        <NuxtLink
+          to="/"
+          class="text-2xl font-black tracking-tight"
+        >
+          INTERIOR
+        </NuxtLink>
+
+        <!-- DESKTOP MENU -->
+        <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em]">
+
+          <NuxtLink
+            to="/"
+            :class="
+              route.path === '/'
+                ? 'text-white'
+                : 'text-neutral-500 hover:text-white'
+            "
+          >
+            Home
+          </NuxtLink>
+
+          <NuxtLink
+            to="/projects"
+            :class="
+              route.path.includes('/projects')
+                ? 'text-white'
+                : 'text-neutral-500 hover:text-white'
+            "
+          >
+            Projects
+          </NuxtLink>
+
+          <NuxtLink
+            to="/studio"
+            :class="
+              route.path === '/studio'
+                ? 'text-white'
+                : 'text-neutral-500 hover:text-white'
+            "
+          >
+            Studio
+          </NuxtLink>
+
+          <NuxtLink
+            to="/contact"
+            :class="
+              route.path === '/contact'
+                ? 'text-white'
+                : 'text-neutral-500 hover:text-white'
+            "
+          >
+            Contact
+          </NuxtLink>
+
+        </nav>
+
+        <!-- MOBILE BUTTON -->
+        <button
+          class="md:hidden text-white"
+          @click="isOpen = !isOpen"
+        >
+          Menu
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div
+      v-if="isOpen"
+      class="md:hidden border-t border-white/10 bg-black"
+    >
+
+      <nav class="flex flex-col p-6 gap-6 text-lg">
+
+        <NuxtLink to="/" @click="isOpen = false">
+          Home
+        </NuxtLink>
+
+        <NuxtLink to="/projects" @click="isOpen = false">
+          Projects
+        </NuxtLink>
+
+        <NuxtLink to="/studio" @click="isOpen = false">
+          Studio
+        </NuxtLink>
+
+        <NuxtLink to="/contact" @click="isOpen = false">
+          Contact
+        </NuxtLink>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+</template>
+
+<script setup lang="ts">
+
+const route = useRoute()
+
+const isOpen = ref(false)
+
+</script>
