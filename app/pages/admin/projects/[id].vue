@@ -48,7 +48,7 @@ watchEffect(() => {
 
 const updateProject = async () => {
 
-    await $fetch(`/api/projects/${route.params.id}.update`, {
+    await $fetch(`/api/projects/${route.params.id}/update`, {
         method: 'PUT',
         body: {
             ...form.value,
@@ -57,6 +57,47 @@ const updateProject = async () => {
     })
 
   router.push('/admin/projects')
+
+}
+const uploadGalleryImage = async (event: Event, index: number) => {
+
+  const file = (event.target as HTMLInputElement).files?.[0]
+
+  if (!file) {
+    return
+  }
+
+  const formData = new FormData()
+
+  formData.append('file', file)
+
+  const response = await $fetch<{ url: string }>('/api/upload', {
+    method: 'POST',
+    body: formData
+  })
+
+  galleryImages.value[index] = response.url
+
+}
+
+const uploadCoverImage = async (event: Event) => {
+
+  const file = (event.target as HTMLInputElement).files?.[0]
+
+  if (!file) {
+    return
+  }
+
+  const formData = new FormData()
+
+  formData.append('file', file)
+
+  const response = await $fetch<{ url: string }>('/api/upload', {
+    method: 'POST',
+    body: formData
+  })
+
+  form.value.coverImage = response.url
 
 }
 </script>
@@ -102,39 +143,64 @@ const updateProject = async () => {
           class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
         />
 
-        <input
-          v-model="form.coverImage"
-          type="text"
-          placeholder="Cover image URL"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
-        />
+        <div class="space-y-4">
+
+            <input
+                v-model="form.coverImage"
+                type="text"
+                placeholder="Cover image URL"
+                class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+            />
+
+            <input
+                type="file"
+                accept="image/*"
+                @change="uploadCoverImage"
+                class="text-sm text-neutral-400"
+            />
+
+            <img
+                v-if="form.coverImage"
+                :src="form.coverImage"
+                class="w-full h-80 object-cover rounded-3xl border border-white/10"
+            />
+
+        </div>
 <div class="space-y-4">
 
-  <div
-    v-for="(image, index) in galleryImages"
-    :key="index"
-    class="space-y-3 border border-white/10 rounded-3xl p-4"
+<div
+  v-for="(image, index) in galleryImages"
+  :key="index"
+  class="space-y-3 border border-white/10 rounded-3xl p-4"
+>
+
+  <input
+    v-model="galleryImages[index]"
+    type="text"
+    class="w-full bg-transparent border border-white/10 rounded-3xl px-6 py-4 outline-none"
+  />
+
+  <input
+    type="file"
+    accept="image/*"
+    @change="uploadGalleryImage($event, index)"
+    class="text-sm text-neutral-400"
+  />
+
+  <img
+    v-if="galleryImages[index]"
+    :src="galleryImages[index]"
+    class="w-40 h-40 object-cover rounded-2xl border border-white/10"
+  />
+
+  <button
+    @click="galleryImages.splice(index, 1)"
+    class="text-red-500 text-sm"
   >
+    Remove
+  </button>
 
-    <input
-      v-model="galleryImages[index]"
-      type="text"
-      class="w-full bg-transparent border border-white/10 rounded-3xl px-6 py-4 outline-none"
-    />
-
-    <img
-      :src="galleryImages[index]"
-      class="w-40 h-40 object-cover rounded-2xl border border-white/10"
-    />
-
-    <button
-      @click="galleryImages.splice(index, 1)"
-      class="text-red-500 text-sm"
-    >
-      Remove
-    </button>
-
-  </div>
+</div>
 
   <button
     @click="galleryImages.push('')"
