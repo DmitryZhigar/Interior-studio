@@ -43,7 +43,7 @@ const filteredProjects = computed(() => {
 })
 </script>
 <template>
-  <div class="min-h-screen bg-black text-white p-10">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white p-10">
 
     <div class="mb-20">
       <p class="uppercase tracking-[0.4em] text-neutral-500 mb-4">
@@ -66,7 +66,7 @@ const filteredProjects = computed(() => {
           'px-6 py-3 rounded-full transition border',
           activeCategory === category
             ? 'bg-white text-black border-white'
-            : 'border-white/10 text-white hover:bg-white hover:text-black'
+            : 'border-[var(--border-color)] text-white hover:bg-white hover:text-black'
         ]"
       >
         {{ category }}

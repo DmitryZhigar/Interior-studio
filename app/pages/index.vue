@@ -1,5 +1,7 @@
 <script setup lang="ts">
 //import { projects } from '~/data/projects'
+import HeroSection from '~/components/HeroSection.vue'
+
 const { data: projects } = await useFetch('/api/projects')
 import { useReveal } from '~/composables/useReveal'
 const heroRef = ref<HTMLElement | null>(null)
@@ -23,7 +25,8 @@ onMounted(() => {
   <div class="max-w-7xl mx-auto">
 
     <!-- HERO -->
-    <section
+     <!-- <HeroSection /> -->
+     <section
         ref="heroRef"
         class="min-h-[90vh] flex flex-col justify-center"
         >

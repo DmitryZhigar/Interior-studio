@@ -12,7 +12,7 @@ const { data: project } = await useFetch(
 
   <div
     v-if="project"
-    class="min-h-screen bg-black text-white"
+    class="min-h-screen bg-[var(--bg-main)] text-white"
   >
 
     <img

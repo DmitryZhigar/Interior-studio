@@ -1,6 +1,6 @@
 :root {
 
-  --bg-main: #0b0b0c;
+  --bg-main: #16110e; /*#0b0b0c; */
 
   --bg-secondary: #121214;
 
@@ -14,4 +14,4 @@
 
   --accent: #d6c2a2;
 
-}
+ } /*#0b0b0c; */
