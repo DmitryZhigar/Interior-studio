@@ -1,4 +1,4 @@
-import prisma from '~~/server/utils/prisma'
+import prisma from '../../utils/prisma'
 
 export default defineEventHandler(async (event) => {
 
@@ -6,10 +6,15 @@ export default defineEventHandler(async (event) => {
 
   const category = await prisma.category.create({
     data: {
+
       name: body.name,
+
+      description: body.description,
+
       slug: body.name
         .toLowerCase()
         .replace(/\s+/g, '-')
+
     }
   })
 

@@ -7,7 +7,8 @@ definePageMeta({
 const { data: categories, refresh } = await useFetch('/api/categories')
 
 const form = ref({
-  name: ''
+  name: '',
+  description: ''
 })
 
 const createCategory = async () => {
@@ -65,7 +66,12 @@ const deleteCategory = async (id: number) => {
           placeholder="Category name"
           class="flex-1 bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
         />
-
+        <textarea
+          v-model="form.description"
+          placeholder="Category description"
+          rows="4"
+          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+        />
         <button
           @click="createCategory"
           class="px-8 bg-white text-black rounded-2xl font-semibold"
@@ -78,24 +84,34 @@ const deleteCategory = async (id: number) => {
       <div class="space-y-4">
 
         <div
-          v-for="category in categories"
-          :key="category.id"
-          class="flex items-center justify-between border border-white/10 rounded-2xl px-6 py-4"
-        >
+  v-for="category in categories"
+  :key="category.id"
+  class="border border-white/10 rounded-2xl p-6 flex items-start justify-between"
+>
 
-          <p>
-            {{ category.name }}
-          </p>
+  <div>
 
-          <button
-            @click="deleteCategory(category.id)"
-            class="text-red-500 hover:text-red-400"
-          >
-            Delete
-          </button>
+    <h3 class="text-xl font-semibold mb-2">
+      {{ category.name }}
+    </h3>
 
-        </div>
+    <p
+      v-if="category.description"
+      class="text-neutral-500 text-sm max-w-xl"
+    >
+      {{ category.description }}
+    </p>
 
+  </div>
+
+  <button
+    @click="deleteCategory(category.id)"
+    class="text-red-500 hover:text-red-400"
+  >
+    Delete
+  </button>
+
+</div>
       </div>
 
     </div>

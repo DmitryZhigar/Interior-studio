@@ -13,10 +13,10 @@ const categories = computed(() => {
   if (!projects.value) {
     return ['All']
   }
-
-  const existingCategories = projects.value
-    .filter(project => project.category)
-    .map(project => project.category.name)
+console.log(projects.value);
+const existingCategories = projects.value
+  .filter(project => project.category)
+  .map(project => project.category!.name)
 
   return [
     'All',

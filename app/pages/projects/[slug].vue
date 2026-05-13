@@ -26,13 +26,16 @@ const { data: project } = await useFetch(
         {{ project.category.name }}
       </p>
 
-      <h1 class="text-6xl font-black mb-10">
+      <p
+        v-if="project.category?.description"
+        class="text-neutral-400 text-lg leading-relaxed max-w-3xl mb-8"
+      >
+        {{ project.category.description }}
+      </p>
+
+      <h1 class="text-6xl font-black mb-6">
         {{ project.title }}
       </h1>
-
-      <p class="text-lg text-neutral-300 max-w-3xl leading-relaxed mb-20">
-        {{ project.description }}
-      </p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
