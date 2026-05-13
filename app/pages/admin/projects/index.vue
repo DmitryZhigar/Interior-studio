@@ -59,7 +59,7 @@ const deleteProject = async (id: number) => {
       <div>
 
         <p class="uppercase tracking-[0.3em] text-xs text-neutral-500 mb-2">
-          {{ project.category.name }}
+          {{ project.category?.name }}
         </p>
 
         <h2 class="text-3xl font-bold">
@@ -69,13 +69,23 @@ const deleteProject = async (id: number) => {
       </div>
 
     </div>
+    <div class="ml-auto flex items-center gap-4">
 
-    <button
-      @click="deleteProject(project.id)"
-      class="px-5 py-2 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition"
-    >
-      Delete
-    </button>
+      <NuxtLink
+        :to="`/admin/projects/${project.id}`"
+        class="px-6 py-3 border border-white/20 rounded-full hover:border-white transition"
+      >
+        Edit
+      </NuxtLink>
+
+      <button
+        @click="deleteProject(project.id)"
+        class="px-6 py-3 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition"
+      >
+        Delete
+      </button>
+
+    </div>
 
   </div>
 

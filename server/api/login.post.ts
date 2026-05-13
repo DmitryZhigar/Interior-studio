@@ -27,7 +27,6 @@ secure: false,
 maxAge: 60 * 60 * 24 * 7
 }
 ))
-console.log(config)
 return {
 success: true
 }

@@ -23,7 +23,7 @@ const { data: project } = await useFetch(
     <div class="max-w-6xl mx-auto px-10 py-20">
 
       <p class="uppercase tracking-[0.4em] text-neutral-500 mb-4">
-        {{ project.category.name }}
+        {{ project.category?.name }}
       </p>
 
       <p
