@@ -32,7 +32,7 @@ model Project {
 
   categoryId Int
 
-  category Category @relation(fields: [categoryId], references: [id])
+  category Category? @relation(fields: [categoryId], references: [id])
 
   images ProjectImage[]
 

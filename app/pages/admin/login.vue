@@ -17,7 +17,7 @@ const signIn = async () => {
       body: form.value
     })
 
-    await navigateTo('/admin/projects')
+    await navigateTo('/admin/')
 
   } catch {
 

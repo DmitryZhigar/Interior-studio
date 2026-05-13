@@ -6,13 +6,24 @@ const { data: projects } = await useFetch('/api/projects')
 
 const activeCategory = ref('All')
 
-const categories = [
-  'All',
-  'Hotel',
-  'Office',
-  'Private House'
-]
+const { data: categoryItems } = await useFetch('/api/categories')
 
+const categories = computed(() => {
+
+  if (!projects.value) {
+    return ['All']
+  }
+
+  const existingCategories = projects.value
+    .filter(project => project.category)
+    .map(project => project.category.name)
+
+  return [
+    'All',
+    ...new Set(existingCategories)
+  ]
+
+})
 const filteredProjects = computed(() => {
 
   if (!projects.value) {
@@ -24,8 +35,10 @@ const filteredProjects = computed(() => {
   }
 
   return projects.value.filter(
-    project => project.category.name === activeCategory.value
-  )
+  project =>
+    project.category &&
+    project.category.name === activeCategory.value
+)
 
 })
 </script>
