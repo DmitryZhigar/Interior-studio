@@ -17,7 +17,7 @@ const deleteProject = async (id: number) => {
 
 <template>
 
-  <div class="min-h-screen bg-black text-white p-10">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white p-10">
 
     <div class="max-w-5xl mx-auto">
 
@@ -46,7 +46,7 @@ const deleteProject = async (id: number) => {
   <div
     v-for="project in projects"
     :key="project.id"
-    class="border border-white/10 rounded-3xl p-6 flex items-center justify-between"
+    class="border border-[var(--border-color)] rounded-3xl p-6 flex items-center justify-between"
   >
 
     <div class="flex items-center gap-6">

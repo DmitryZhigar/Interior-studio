@@ -5,7 +5,7 @@ definePageMeta({
 </script>
 <template>
 
-  <div class="min-h-screen bg-black text-white p-10">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white p-10">
 
     <div class="mb-16">
 
@@ -23,7 +23,7 @@ definePageMeta({
 
       <NuxtLink
         to="/admin/projects"
-        class="bg-white/5 border border-white/10 rounded-[32px] p-10 hover:bg-white hover:text-black transition"
+        class="bg-white/5 border border-[var(--border-color)] rounded-[32px] p-10 hover:bg-white hover:text-black transition"
       >
 
         <h2 class="text-3xl font-bold mb-4">
@@ -38,7 +38,7 @@ definePageMeta({
 
       <NuxtLink
         to="/admin/categories"
-        class="bg-white/5 border border-white/10 rounded-[32px] p-10 hover:bg-white hover:text-black transition"
+        class="bg-white/5 border border-[var(--border-color)] rounded-[32px] p-10 hover:bg-white hover:text-black transition"
       >
 
         <h2 class="text-3xl font-bold mb-4">

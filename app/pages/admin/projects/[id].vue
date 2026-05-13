@@ -104,7 +104,7 @@ const uploadCoverImage = async (event: Event) => {
 
 <template>
 
-  <div class="min-h-screen bg-black text-white p-10">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white p-10">
 
     <div class="max-w-3xl mx-auto">
 
@@ -126,21 +126,21 @@ const uploadCoverImage = async (event: Event) => {
           v-model="form.title"
           type="text"
           placeholder="Project title"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
 
         <input
           v-model="form.slug"
           type="text"
           placeholder="Slug"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
 
         <textarea
           v-model="form.description"
           placeholder="Description"
           rows="6"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
 
         <div class="space-y-4">
@@ -149,7 +149,7 @@ const uploadCoverImage = async (event: Event) => {
                 v-model="form.coverImage"
                 type="text"
                 placeholder="Cover image URL"
-                class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+                class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
             />
 
             <input
@@ -162,7 +162,7 @@ const uploadCoverImage = async (event: Event) => {
             <img
                 v-if="form.coverImage"
                 :src="form.coverImage"
-                class="w-full h-80 object-cover rounded-3xl border border-white/10"
+                class="w-full h-80 object-cover rounded-3xl border border-[var(--border-color)]"
             />
 
         </div>
@@ -171,13 +171,13 @@ const uploadCoverImage = async (event: Event) => {
 <div
   v-for="(image, index) in galleryImages"
   :key="index"
-  class="space-y-3 border border-white/10 rounded-3xl p-4"
+  class="space-y-3 border border-[var(--border-color)] rounded-3xl p-4"
 >
 
   <input
     v-model="galleryImages[index]"
     type="text"
-    class="w-full bg-transparent border border-white/10 rounded-3xl px-6 py-4 outline-none"
+    class="w-full bg-transparent border border-[var(--border-color)] rounded-3xl px-6 py-4 outline-none"
   />
 
   <input
@@ -190,7 +190,7 @@ const uploadCoverImage = async (event: Event) => {
   <img
     v-if="galleryImages[index]"
     :src="galleryImages[index]"
-    class="w-40 h-40 object-cover rounded-2xl border border-white/10"
+    class="w-40 h-40 object-cover rounded-2xl border border-[var(--border-color)]"
   />
 
   <button
@@ -204,7 +204,7 @@ const uploadCoverImage = async (event: Event) => {
 
   <button
     @click="galleryImages.push('')"
-    class="px-6 py-3 border border-white/10 rounded-2xl hover:bg-white hover:text-black transition"
+    class="px-6 py-3 border border-[var(--border-color)] rounded-2xl hover:bg-white hover:text-black transition"
   >
     Add Gallery Image
   </button>
@@ -212,7 +212,7 @@ const uploadCoverImage = async (event: Event) => {
 </div>
         <select
           v-model="form.categoryId"
-          class="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         >
 
           <option disabled value="">

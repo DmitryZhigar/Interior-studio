@@ -42,7 +42,7 @@ const deleteCategory = async (id: number) => {
 
 <template>
 
-  <div class="min-h-screen bg-black text-white p-10">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white p-10">
 
     <div class="max-w-3xl mx-auto">
 
@@ -64,13 +64,13 @@ const deleteCategory = async (id: number) => {
           v-model="form.name"
           type="text"
           placeholder="Category name"
-          class="flex-1 bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="flex-1 bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
         <textarea
           v-model="form.description"
           placeholder="Category description"
           rows="4"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
         <button
           @click="createCategory"
@@ -86,7 +86,7 @@ const deleteCategory = async (id: number) => {
         <div
   v-for="category in categories"
   :key="category.id"
-  class="border border-white/10 rounded-2xl p-6 flex items-start justify-between"
+  class="border border-[var(--border-color)] rounded-2xl p-6 flex items-start justify-between"
 >
 
   <div>

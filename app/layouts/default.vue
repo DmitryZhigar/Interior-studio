@@ -1,6 +1,6 @@
 <template>
 
-  <div class="bg-black text-white min-h-screen">
+  <div class="bg-[var(--bg-main)] text-[var(--text-primary)] min-h-screen">
 
     <!-- NAVBAR -->
     <Navbar />

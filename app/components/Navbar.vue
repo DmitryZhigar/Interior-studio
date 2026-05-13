@@ -18,7 +18,7 @@ const logout = async () => {
 <template>
 
   <header
-    class="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10"
+    class="fixed top-0 left-0 w-full z-50 bg-[#0b0b0c]/70 backdrop-blur-xl border-b border-[var(--border-color)]"
   >
 
     <div class="max-w-7xl mx-auto px-4 lg:px-10">
@@ -118,7 +118,7 @@ const logout = async () => {
     <!-- MOBILE MENU -->
     <div
       v-if="isOpen"
-      class="md:hidden border-t border-white/10 bg-black"
+      class="md:hidden border-t border-[var(--border-color)] bg-[var(--bg-main)]"
     >
 
       <nav class="flex flex-col p-6 gap-6 text-lg">

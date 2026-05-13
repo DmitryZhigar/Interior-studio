@@ -84,7 +84,7 @@ const uploadGalleryImage = async (event: Event) => {
 
 <template>
 
-  <div class="min-h-screen bg-black text-white p-10">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white p-10">
 
     <div class="max-w-3xl mx-auto">
 
@@ -106,21 +106,21 @@ const uploadGalleryImage = async (event: Event) => {
           v-model="form.title"
           type="text"
           placeholder="Project title"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
 
         <input
           v-model="form.slug"
           type="text"
           placeholder="Slug"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
 
         <textarea
           v-model="form.description"
           placeholder="Description"
           rows="6"
-          class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         />
 
         <input
@@ -134,7 +134,7 @@ const uploadGalleryImage = async (event: Event) => {
         />
         <select
           v-model="form.categoryId"
-          class="w-full bg-black border border-white/10 rounded-2xl px-6 py-4 outline-none"
+          class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         >
 
           <option disabled value="">

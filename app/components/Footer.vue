@@ -1,7 +1,7 @@
 <template>
 
   <footer
-    class="border-t border-white/10 mt-40"
+    class="border-t border-[var(--border-color)] mt-40"
   >
 
     <div
@@ -107,7 +107,7 @@
       <!-- BOTTOM -->
 
       <div
-        class="border-t border-white/10 mt-20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500"
+        class="border-t border-[var(--border-color)] mt-20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-neutral-500"
       >
 
         <p>

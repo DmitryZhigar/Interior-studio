@@ -30,7 +30,7 @@ const signIn = async () => {
 
 <template>
 
-  <div class="min-h-screen bg-black text-white flex items-center justify-center">
+  <div class="min-h-screen bg-[var(--bg-main)] text-white flex items-center justify-center">
    <div class="w-full max-w-md">
 
       <h1 class="text-5xl font-black mb-10">
@@ -41,13 +41,13 @@ const signIn = async () => {
             v-model="form.login"
             type="text"
             placeholder="Login"
-            class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+            class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
           />
           <input
             v-model="form.password"
             type="password"
             placeholder="Password"
-            class="w-full bg-transparent border border-white/10 rounded-2xl px-6 py-4 outline-none"
+            class="w-full bg-transparent border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
           />
           <p
             v-if="error"

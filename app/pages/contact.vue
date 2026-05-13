@@ -110,7 +110,7 @@ const sendRequest = async () => {
 
       <!-- RIGHT -->
       <div
-        class="bg-white/5 border border-white/10 rounded-[32px] p-8"
+        class="bg-white/5 border border-[var(--border-color)] rounded-[32px] p-8"
       >
 
         <form
@@ -122,21 +122,21 @@ const sendRequest = async () => {
             v-model="form.name"
             type="text"
             placeholder="Your Name"
-            class="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none"
+            class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
 
           <input
             v-model="form.email"
             type="email"
             placeholder="Email"
-            class="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none"
+            class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
 
           <textarea
             v-model="form.message"
             rows="6"
             placeholder="Tell us about your project"
-            class="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none"
+            class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
 
           <button
