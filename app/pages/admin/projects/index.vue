@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'admin'
+})
+
 const { data: projects, refresh } = await useFetch('/api/projects')
 
 const deleteProject = async (id: number) => {

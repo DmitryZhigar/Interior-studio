@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 const router = useRouter()
 const { data: categories } = await useFetch('/api/categories')
+definePageMeta({
+  middleware: 'admin'
+})
 
 const form = ref({
   title: '',

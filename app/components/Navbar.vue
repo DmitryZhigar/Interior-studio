@@ -1,3 +1,20 @@
+<script setup lang="ts">
+
+const route = useRoute()
+
+const authAdmin = useCookie('admin-auth')
+const isAuthenticated = computed(() => !!authAdmin.value)
+const isOpen = ref(false)
+
+const logout = async () => {
+
+  authAdmin.value = null
+
+  await navigateTo('/admin/login')
+
+}
+
+</script>
 <template>
 
   <header
@@ -18,7 +35,6 @@
 
         <!-- DESKTOP MENU -->
         <nav class="hidden md:flex items-center gap-10 text-sm uppercase tracking-[0.2em]">
-
           <NuxtLink
             to="/"
             :class="
@@ -62,7 +78,29 @@
           >
             Contact
           </NuxtLink>
+          <NuxtLink
+              v-if="isAuthenticated"
+              to="/admin/"
+              class="text-neutral-500 hover:text-white"
+            >
+              Manage
+            </NuxtLink>
 
+            <button
+              v-if="isAuthenticated"
+              @click="logout"
+              class="text-neutral-500 hover:text-white"
+            >
+              Logout
+            </button>
+
+            <NuxtLink
+              v-else
+              to="/admin/login"
+              class="text-neutral-500 hover:text-white"
+            >
+              Login
+            </NuxtLink>
         </nav>
 
         <!-- MOBILE BUTTON -->
@@ -100,6 +138,7 @@
         <NuxtLink to="/contact" @click="isOpen = false">
           Contact
         </NuxtLink>
+        
 
       </nav>
 
@@ -108,11 +147,3 @@
   </header>
 
 </template>
-
-<script setup lang="ts">
-
-const route = useRoute()
-
-const isOpen = ref(false)
-
-</script>

@@ -8,6 +8,14 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: ['gsap']
     }
-  }
+  },
+    runtimeConfig: {
 
+    adminLogin: process.env.ADMIN_LOGIN,
+
+    adminPassword: process.env.ADMIN_PASSWORD,
+
+    adminSessionSecret: process.env.ADMIN_SESSION_SECRET
+
+    }
 })

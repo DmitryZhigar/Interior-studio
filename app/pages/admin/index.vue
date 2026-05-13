@@ -1,3 +1,8 @@
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'admin'
+})
+</script>
 <template>
 
   <div class="min-h-screen bg-black text-white p-10">
