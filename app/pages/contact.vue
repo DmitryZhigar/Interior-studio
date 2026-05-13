@@ -1,3 +1,48 @@
+<script setup lang="ts">
+
+const form = ref({
+  name: '',
+  email: '',
+  message: ''
+})
+
+const loading = ref(false)
+
+const success = ref(false)
+
+const sendRequest = async () => {
+
+  try {
+
+    loading.value = true
+
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: form.value
+    })
+
+    success.value = true
+
+    form.value = {
+      name: '',
+      email: '',
+      message: ''
+    }
+
+  } catch (error) {
+
+    console.error(error)
+
+  } finally {
+
+    loading.value = false
+
+  }
+
+}
+
+</script>
+
 <template>
 
   <div class="max-w-7xl mx-auto">
@@ -68,31 +113,46 @@
         class="bg-white/5 border border-white/10 rounded-[32px] p-8"
       >
 
-        <form class="space-y-6">
+        <form
+          @submit.prevent="sendRequest"
+          class="space-y-6"
+        >
 
           <input
+            v-model="form.name"
             type="text"
             placeholder="Your Name"
             class="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none"
           />
 
           <input
+            v-model="form.email"
             type="email"
             placeholder="Email"
             class="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none"
           />
 
           <textarea
+            v-model="form.message"
             rows="6"
             placeholder="Tell us about your project"
             class="w-full bg-black/30 border border-white/10 rounded-2xl px-6 py-5 outline-none"
-          ></textarea>
+          />
 
           <button
-            class="w-full bg-white text-black py-5 rounded-2xl uppercase tracking-[0.3em] font-semibold"
+            type="submit"
+            :disabled="loading"
+            class="w-full bg-white text-black py-5 rounded-2xl uppercase tracking-[0.3em] font-semibold hover:opacity-80 transition disabled:opacity-50"
           >
-            Send Request
+            {{ loading ? 'Sending...' : 'Send Request' }}
           </button>
+
+          <p
+            v-if="success"
+            class="text-green-500 text-sm"
+          >
+            Request sent successfully.
+          </p>
 
         </form>
 

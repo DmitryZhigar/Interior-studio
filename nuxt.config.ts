@@ -15,7 +15,8 @@ export default defineNuxtConfig({
 
     adminPassword: process.env.ADMIN_PASSWORD,
 
-    adminSessionSecret: process.env.ADMIN_SESSION_SECRET
+    adminSessionSecret: process.env.ADMIN_SESSION_SECRET,
 
+    resendApiKey: process.env.RESEND_API_KEY
     }
 })
