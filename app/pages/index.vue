@@ -107,7 +107,7 @@ onMounted(() => {
           </div>
 
           <p class="uppercase tracking-[0.3em] text-neutral-500 mb-3 text-sm">
-            {{ project.category.name }}
+            {{ project.category?.name }}
           </p>
 
           <h3 class="text-4xl font-bold">
