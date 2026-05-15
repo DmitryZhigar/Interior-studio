@@ -72,12 +72,28 @@ const translations: Record<LocaleCode, TranslationTree> = {
       cta: 'View Projects',
       selected: 'Selected Work',
       featured: 'Featured Projects',
-      viewAll: 'View All ->'
+      viewAll: 'View All ->',
+      estimateCta: 'Get Estimate'
     },
     projects: {
       eyebrow: 'Portfolio',
       title: 'Projects',
       all: 'All'
+    },
+    estimate: {
+      eyebrow: 'Cost Request',
+      title: 'Leave a request',
+      subtitle: 'We will call you back shortly, clarify the project details, and prepare the next step.',
+      nameLabel: 'Your name',
+      namePlaceholder: 'Your name',
+      phoneLabel: 'Phone number',
+      phonePlaceholder: '+995 500 50 82 82',
+      consent: 'I agree to the processing of my personal data.',
+      submit: 'Send',
+      sending: 'Sending...',
+      success: 'Request sent successfully.',
+      close: 'Close',
+      message: 'Cost request from the home page.'
     },
     studio: {
       eyebrow: 'About Studio',
@@ -147,12 +163,28 @@ const translations: Record<LocaleCode, TranslationTree> = {
       cta: 'Смотреть проекты',
       selected: 'Избранные работы',
       featured: 'Проекты',
-      viewAll: 'Смотреть все ->'
+      viewAll: 'Смотреть все ->',
+      estimateCta: 'Узнать стоимость'
     },
     projects: {
       eyebrow: 'Портфолио',
       title: 'Проекты',
       all: 'Все'
+    },
+    estimate: {
+      eyebrow: 'Расчёт стоимости',
+      title: 'Оставить заявку',
+      subtitle: 'Перезвоним в ближайшее время, уточним детали проекта и подскажем следующий шаг.',
+      nameLabel: 'Введите ваше имя',
+      namePlaceholder: 'Ваше имя',
+      phoneLabel: 'Введите ваш номер телефона',
+      phonePlaceholder: '+995 500 50 82 82',
+      consent: 'Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных.',
+      submit: 'Отправить',
+      sending: 'Отправляем...',
+      success: 'Заявка успешно отправлена.',
+      close: 'Закрыть',
+      message: 'Заявка на расчёт стоимости с главной страницы.'
     },
     studio: {
       eyebrow: 'О студии',
@@ -222,12 +254,28 @@ const translations: Record<LocaleCode, TranslationTree> = {
       cta: 'პროექტების ნახვა',
       selected: 'რჩეული ნამუშევრები',
       featured: 'პროექტები',
-      viewAll: 'ყველას ნახვა ->'
+      viewAll: 'ყველას ნახვა ->',
+      estimateCta: 'ღირებულების გაგება'
     },
     projects: {
       eyebrow: 'პორტფოლიო',
       title: 'პროექტები',
       all: 'ყველა'
+    },
+    estimate: {
+      eyebrow: 'ღირებულების მოთხოვნა',
+      title: 'დატოვეთ განაცხადი',
+      subtitle: 'მალე დაგირეკავთ, დავაზუსტებთ პროექტის დეტალებს და შემდეგ ნაბიჯს გეტყვით.',
+      nameLabel: 'შეიყვანეთ თქვენი სახელი',
+      namePlaceholder: 'თქვენი სახელი',
+      phoneLabel: 'შეიყვანეთ ტელეფონის ნომერი',
+      phonePlaceholder: '+995 500 50 82 82',
+      consent: 'ღილაკზე დაჭერით ეთანხმებით პერსონალური მონაცემების დამუშავებას.',
+      submit: 'გაგზავნა',
+      sending: 'იგზავნება...',
+      success: 'განაცხადი წარმატებით გაიგზავნა.',
+      close: 'დახურვა',
+      message: 'ღირებულების მოთხოვნა მთავარი გვერდიდან.'
     },
     studio: {
       eyebrow: 'სტუდიის შესახებ',
@@ -297,12 +345,28 @@ const translations: Record<LocaleCode, TranslationTree> = {
       cta: 'צפייה בפרויקטים',
       selected: 'עבודות נבחרות',
       featured: 'פרויקטים',
-      viewAll: 'לכל הפרויקטים ->'
+      viewAll: 'לכל הפרויקטים ->',
+      estimateCta: 'קבלת הערכת מחיר'
     },
     projects: {
       eyebrow: 'פורטפוליו',
       title: 'פרויקטים',
       all: 'הכול'
+    },
+    estimate: {
+      eyebrow: 'בקשת מחיר',
+      title: 'השאירו פרטים',
+      subtitle: 'נחזור אליכם בקרוב, נברר את פרטי הפרויקט ונציע את הצעד הבא.',
+      nameLabel: 'השם שלך',
+      namePlaceholder: 'השם שלך',
+      phoneLabel: 'מספר טלפון',
+      phonePlaceholder: '+995 500 50 82 82',
+      consent: 'בלחיצה על הכפתור אתם מסכימים לעיבוד הנתונים האישיים.',
+      submit: 'שליחה',
+      sending: 'שולח...',
+      success: 'הבקשה נשלחה בהצלחה.',
+      close: 'סגירה',
+      message: 'בקשת מחיר מעמוד הבית.'
     },
     studio: {
       eyebrow: 'על הסטודיו',
