@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const { currentLocale } = useLocale()
+
+useHead(() => ({
+  htmlAttrs: {
+    lang: currentLocale.value.htmlLang,
+    dir: 'ltr'
+  }
+}))
+</script>
+
 <template>
 
   <div class="bg-[var(--bg-main)] text-[var(--text-primary)] min-h-screen relative overflow-hidden">

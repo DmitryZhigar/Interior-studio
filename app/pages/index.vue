@@ -1,14 +1,13 @@
 <script setup lang="ts">
-//import { projects } from '~/data/projects'
-import HeroSection from '~/components/HeroSection.vue'
-
-const { data: projects } = await useFetch('/api/projects')
 import { useReveal } from '~/composables/useReveal'
+
+const { t } = useLocale()
+const { data: projects } = await useFetch('/api/projects')
+
 const heroRef = ref<HTMLElement | null>(null)
-
 const projectsRef = ref<HTMLElement | null>(null)
-onMounted(() => {
 
+onMounted(() => {
   if (heroRef.value) {
     useReveal(heroRef.value)
   }
@@ -16,97 +15,74 @@ onMounted(() => {
   if (projectsRef.value) {
     useReveal(projectsRef.value)
   }
-
 })
 </script>
 
 <template>
-
   <div class="max-w-7xl mx-auto">
-
-    <!-- HERO -->
-     <!-- <HeroSection /> -->
-     <section
-        ref="heroRef"
-        class="min-h-[90vh] flex flex-col justify-center"
-        >
-
+    <section
+      ref="heroRef"
+      class="min-h-[90vh] flex flex-col justify-center"
+    >
       <p class="uppercase tracking-[0.4em] text-neutral-500 mb-8">
-        Interior Studio
+        {{ t('home.eyebrow') }}
       </p>
 
-      <h1
-        class="text-6xl md:text-8xl lg:text-[140px] font-black leading-[0.9] mb-10"
-      >
-        Cinematic<br />
-        Interior<br />
-        Design
+      <h1 class="text-6xl md:text-8xl lg:text-[140px] font-black leading-[0.9] mb-10">
+        {{ t('home.titleLine1') }}<br />
+        {{ t('home.titleLine2') }}<br />
+        {{ t('home.titleLine3') }}
       </h1>
 
       <div class="max-w-2xl">
-
         <p class="text-xl md:text-2xl text-neutral-300 leading-relaxed mb-10">
-          Premium interiors for hotels, offices,
-          residential and hospitality environments.
+          {{ t('home.intro') }}
         </p>
 
         <NuxtLink
           to="/projects"
           class="inline-flex items-center gap-4 bg-white text-black px-8 py-5 rounded-full font-semibold hover:scale-105 transition"
         >
-          View Projects
+          {{ t('home.cta') }}
         </NuxtLink>
-
       </div>
-
     </section>
 
-    <!-- FEATURED -->
     <section
-        ref="projectsRef"
-        class="pb-32"
-        >
-
+      ref="projectsRef"
+      class="pb-32"
+    >
       <div class="flex items-end justify-between mb-16">
-
         <div>
-
           <p class="uppercase tracking-[0.4em] text-neutral-500 mb-4">
-            Selected Work
+            {{ t('home.selected') }}
           </p>
 
           <h2 class="text-5xl font-black">
-            Featured Projects
+            {{ t('home.featured') }}
           </h2>
-
         </div>
 
         <NuxtLink
           to="/projects"
           class="hidden md:block text-neutral-400 hover:text-white transition"
         >
-          View All →
+          {{ t('home.viewAll') }}
         </NuxtLink>
-
       </div>
 
-      <!-- GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
         <NuxtLink
           v-for="project in projects?.slice(0, 2)"
           :key="project.id"
           :to="`/projects/${project.slug}`"
           class="group block"
         >
-
           <div class="overflow-hidden rounded-[36px] mb-6">
-
             <img
               :src="project.coverImage"
               class="w-full h-[700px] object-cover group-hover:scale-105 transition duration-700"
             />
-
           </div>
 
           <p class="uppercase tracking-[0.3em] text-neutral-500 mb-3 text-sm">
@@ -116,13 +92,8 @@ onMounted(() => {
           <h3 class="text-4xl font-bold">
             {{ project.title }}
           </h3>
-
         </NuxtLink>
-
       </div>
-
     </section>
-
   </div>
-
 </template>

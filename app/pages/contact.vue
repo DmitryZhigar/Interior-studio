@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t, phoneNumber } = useLocale()
 
 const form = ref({
   name: '',
@@ -51,13 +52,13 @@ const sendRequest = async () => {
     <section class="mb-24">
 
       <p class="uppercase tracking-[0.4em] text-neutral-500 mb-6">
-        Contact
+        {{ t('contact.eyebrow') }}
       </p>
 
       <h1 class="text-5xl md:text-7xl lg:text-[110px] font-black leading-[0.9] mb-10">
-        Let's create<br />
-        something<br />
-        exceptional.
+        {{ t('contact.titleLine1') }}<br />
+        {{ t('contact.titleLine2') }}<br />
+        {{ t('contact.titleLine3') }}
       </h1>
 
     </section>
@@ -69,14 +70,14 @@ const sendRequest = async () => {
       <div>
 
         <p class="uppercase tracking-[0.3em] text-neutral-500 mb-6">
-          Information
+          {{ t('contact.information') }}
         </p>
 
         <div class="space-y-10">
 
           <div>
             <p class="text-neutral-500 mb-2">
-              Email
+              {{ t('contact.email') }}
             </p>
 
             <p class="text-2xl font-semibold">
@@ -86,21 +87,21 @@ const sendRequest = async () => {
 
           <div>
             <p class="text-neutral-500 mb-2">
-              Phone
+              {{ t('contact.phone') }}
             </p>
 
             <p class="text-2xl font-semibold">
-              +420 123 456 789
+              {{ phoneNumber }}
             </p>
           </div>
 
           <div>
             <p class="text-neutral-500 mb-2">
-              Location
+              {{ t('contact.location') }}
             </p>
 
             <p class="text-2xl font-semibold">
-              Prague, Czech Republic
+              {{ t('contact.locationValue') }}
             </p>
           </div>
 
@@ -121,21 +122,21 @@ const sendRequest = async () => {
           <input
             v-model="form.name"
             type="text"
-            placeholder="Your Name"
+            :placeholder="t('contact.namePlaceholder')"
             class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
 
           <input
             v-model="form.email"
             type="email"
-            placeholder="Email"
+            :placeholder="t('contact.emailPlaceholder')"
             class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
 
           <textarea
             v-model="form.message"
             rows="6"
-            placeholder="Tell us about your project"
+            :placeholder="t('contact.messagePlaceholder')"
             class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
 
@@ -144,14 +145,14 @@ const sendRequest = async () => {
             :disabled="loading"
             class="w-full bg-white text-black py-5 rounded-2xl uppercase tracking-[0.3em] font-semibold hover:opacity-80 transition disabled:opacity-50"
           >
-            {{ loading ? 'Sending...' : 'Send Request' }}
+            {{ loading ? t('contact.sending') : t('contact.submit') }}
           </button>
 
           <p
             v-if="success"
             class="text-green-500 text-sm"
           >
-            Request sent successfully.
+            {{ t('contact.success') }}
           </p>
 
         </form>
