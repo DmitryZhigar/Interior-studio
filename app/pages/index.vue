@@ -65,10 +65,6 @@ onMounted(() => {
   if (heroRef.value) {
     useReveal(heroRef.value)
   }
-
-if (projectsRef.value) {
-    useReveal(projectsRef.value)
-  }
   document.addEventListener('keydown', closeOnEscape)
 })
 
@@ -145,7 +141,7 @@ onBeforeUnmount(() => {
                 :aria-label="t('estimate.close')"
                 @click="closeEstimate"
               >
-                ×
+                &times;
               </button>
             </div>
 
