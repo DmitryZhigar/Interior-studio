@@ -9,14 +9,10 @@ export default defineNuxtConfig({
       include: ['gsap']
     }
   },
-    runtimeConfig: {
-
-    adminLogin: process.env.ADMIN_LOGIN,
-
-    adminPassword: process.env.ADMIN_PASSWORD,
-
-    adminSessionSecret: process.env.ADMIN_SESSION_SECRET,
-
-    resendApiKey: process.env.RESEND_API_KEY
-    }
+  runtimeConfig: {
+    adminLogin: '',
+    adminPassword: '',
+    adminSessionSecret: '',
+    resendApiKey: ''
+  }
 })

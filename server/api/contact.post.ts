@@ -24,7 +24,16 @@ export default defineEventHandler(async (event) => {
   }
 
   const config = useRuntimeConfig()
-  const resend = new Resend(config.resendApiKey)
+  const resendApiKey = process.env.RESEND_API_KEY || config.resendApiKey
+
+  if (!resendApiKey) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: 'Email provider is not configured'
+    })
+  }
+
+  const resend = new Resend(resendApiKey)
 
   await resend.emails.send({
     from: 'onboarding@resend.dev',
