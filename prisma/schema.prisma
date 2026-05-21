@@ -34,9 +34,9 @@ model Project {
 
   coverImage String
 
-  categoryId Int
+  categoryId Int?
 
-  category Category? @relation(fields: [categoryId], references: [id])
+  category Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
 
   images ProjectImage[]
 

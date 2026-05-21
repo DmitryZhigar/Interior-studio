@@ -11,20 +11,34 @@ const form = ref({
   description: ''
 })
 
+const error = ref('')
+const isCreating = ref(false)
+
 const createCategory = async () => {
+  error.value = ''
 
   if (!form.value.name) {
+    error.value = 'Category name is required'
     return
   }
 
-  await $fetch('/api/categories/create', {
-    method: 'POST',
-    body: form.value
-  })
+  try {
+    isCreating.value = true
 
-  form.value.name = ''
+    await $fetch('/api/categories/create', {
+      method: 'POST',
+      body: form.value
+    })
 
-  refresh()
+    form.value.name = ''
+    form.value.description = ''
+
+    refresh()
+  } catch (requestError: any) {
+    error.value = requestError?.statusMessage || 'Failed to create category'
+  } finally {
+    isCreating.value = false
+  }
 
 }
 
@@ -74,12 +88,20 @@ const deleteCategory = async (id: number) => {
         />
         <button
           @click="createCategory"
+          :disabled="isCreating"
           class="px-8 bg-white text-black rounded-2xl font-semibold"
         >
-          Add
+          {{ isCreating ? 'Adding' : 'Add' }}
         </button>
 
       </div>
+
+      <p
+        v-if="error"
+        class="mb-8 text-sm text-red-400"
+      >
+        {{ error }}
+      </p>
 
       <div class="space-y-4">
 

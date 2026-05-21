@@ -137,8 +137,8 @@ const uploadGalleryImage = async (event: Event) => {
           class="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-2xl px-6 py-4 outline-none"
         >
 
-          <option disabled value="">
-            Select category
+          <option value="">
+            No category
           </option>
 
           <option

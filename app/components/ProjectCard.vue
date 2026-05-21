@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { t } = useLocale()
+
 defineProps({
   project: {
     type: Object,
@@ -37,7 +39,7 @@ const randomHeight = () => {
     </div>
 
     <p class="text-sm uppercase tracking-[0.3em] text-neutral-500 mb-3">
-      {{ project.category.name }}
+      {{ project.category?.name || t('projects.all') }}
     </p>
 
     <h2 class="text-3xl font-bold mb-4 leading-tight">
