@@ -34,7 +34,7 @@ const deleteProject = async () => {
     await refresh()
     projectToDelete.value = null
   } catch (requestError: any) {
-    error.value = requestError?.statusMessage || 'Failed to delete project'
+    error.value = getRequestErrorMessage(requestError, 'Failed to delete project')
   } finally {
     isDeleting.value = false
   }

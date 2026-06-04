@@ -1,4 +1,3 @@
-import { Prisma } from '@prisma/client'
 import prisma from '../../utils/prisma'
 
 const parseCategoryId = (value: unknown) => {
@@ -49,10 +48,7 @@ export default defineEventHandler(async (event) => {
 
     return project
   } catch (error) {
-    if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === 'P2002'
-    ) {
+    if ((error as { code?: string })?.code === 'P2002') {
       throw createError({
         statusCode: 409,
         statusMessage: 'Project slug already exists'

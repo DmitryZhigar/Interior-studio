@@ -1,4 +1,3 @@
-import { Prisma } from '@prisma/client'
 import prisma from '../../utils/prisma'
 
 const createSlug = (value: string) => {
@@ -36,10 +35,7 @@ export default defineEventHandler(async (event) => {
 
     return category
   } catch (error) {
-    if (
-      error instanceof Prisma.PrismaClientKnownRequestError &&
-      error.code === 'P2002'
-    ) {
+    if ((error as { code?: string })?.code === 'P2002') {
       throw createError({
         statusCode: 409,
         statusMessage: 'Category already exists'

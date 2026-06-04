@@ -37,7 +37,7 @@ const createCategory = async () => {
 
     refresh()
   } catch (requestError: any) {
-    error.value = requestError?.statusMessage || 'Failed to create category'
+    error.value = getRequestErrorMessage(requestError, 'Failed to create category')
   } finally {
     isCreating.value = false
   }
@@ -69,7 +69,7 @@ const deleteCategory = async () => {
     await refresh()
     categoryToDelete.value = null
   } catch (requestError: any) {
-    error.value = requestError?.statusMessage || 'Failed to delete category'
+    error.value = getRequestErrorMessage(requestError, 'Failed to delete category')
   } finally {
     isDeleting.value = false
   }

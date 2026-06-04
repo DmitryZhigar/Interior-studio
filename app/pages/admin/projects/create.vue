@@ -40,7 +40,7 @@ const createProject = async () => {
 
     router.push('/admin/projects')
   } catch (requestError: any) {
-    error.value = requestError?.statusMessage || 'Failed to create project'
+    error.value = getRequestErrorMessage(requestError, 'Failed to create project')
   } finally {
     isSaving.value = false
   }
@@ -72,7 +72,7 @@ const uploadImage = async (event: Event) => {
 
     form.value.coverImage = response.url
   } catch (requestError: any) {
-    error.value = requestError?.statusMessage || 'Failed to upload cover image'
+    error.value = getRequestErrorMessage(requestError, 'Failed to upload cover image')
   } finally {
     isUploading.value = false
   }
@@ -104,7 +104,7 @@ const uploadGalleryImage = async (event: Event) => {
 
     galleryImages.value.push(response.url)
   } catch (requestError: any) {
-    error.value = requestError?.statusMessage || 'Failed to upload gallery image'
+    error.value = getRequestErrorMessage(requestError, 'Failed to upload gallery image')
   } finally {
     isUploading.value = false
   }
