@@ -5,13 +5,39 @@ definePageMeta({
 
 const { data: projects, refresh } = await useFetch('/api/projects')
 
-const deleteProject = async (id: number) => {
+const error = ref('')
+const isDeleting = ref(false)
+const projectToDelete = ref<any | null>(null)
 
-  await $fetch(`/api/projects/${id}`, {
-    method: 'DELETE'
-  })
+const askDeleteProject = (project: any) => {
+  projectToDelete.value = project
+}
 
-  refresh()
+const cancelDeleteProject = () => {
+  if (!isDeleting.value) {
+    projectToDelete.value = null
+  }
+}
+
+const deleteProject = async () => {
+  if (!projectToDelete.value) {
+    return
+  }
+
+  try {
+    isDeleting.value = true
+
+    await $fetch(`/api/projects/${projectToDelete.value.id}`, {
+      method: 'DELETE'
+    })
+
+    await refresh()
+    projectToDelete.value = null
+  } catch (requestError: any) {
+    error.value = requestError?.statusMessage || 'Failed to delete project'
+  } finally {
+    isDeleting.value = false
+  }
 }
 </script>
 
@@ -41,6 +67,14 @@ const deleteProject = async (id: number) => {
         </NuxtLink>
 
       </div>
+
+      <p
+        v-if="error"
+        class="mb-8 text-sm text-red-400"
+      >
+        {{ error }}
+      </p>
+
 <div class="space-y-6">
 
   <div
@@ -79,7 +113,7 @@ const deleteProject = async (id: number) => {
       </NuxtLink>
 
       <button
-        @click="deleteProject(project.id)"
+        @click="askDeleteProject(project)"
         class="px-6 py-3 border border-red-500 text-red-500 rounded-full hover:bg-red-500 hover:text-white transition"
       >
         Delete
@@ -93,5 +127,16 @@ const deleteProject = async (id: number) => {
     </div>
 
   </div>
+
+  <ConfirmDialog
+    :open="Boolean(projectToDelete)"
+    title="Delete project?"
+    :message="`Project '${projectToDelete?.title || ''}' will be deleted completely.`"
+    confirm-label="Да"
+    cancel-label="Нет"
+    :pending="isDeleting"
+    @confirm="deleteProject"
+    @cancel="cancelDeleteProject"
+  />
 
 </template>

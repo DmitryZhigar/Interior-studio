@@ -14,28 +14,41 @@ const form = ref({
   categoryId: ''
 })
 const galleryImages = ref<string[]>([])
+const error = ref('')
+const isSaving = ref(false)
+const isUploading = ref(false)
+
 const createProject = async () => {
+  error.value = ''
 
-  const project = await $fetch('/api/projects/create', {
-    method: 'POST',
-    body: form.value
-  })
+  try {
+    isSaving.value = true
 
-  for (const image of galleryImages.value) {
-
-    await $fetch(`/api/projects/${project.id}/images`, {
+    const project = await $fetch<{ id: number }>('/api/projects/create', {
       method: 'POST',
-      body: {
-        url: image
-      }
+      body: form.value
     })
 
+    for (const image of galleryImages.value) {
+      await $fetch(`/api/projects/${project.id}/images`, {
+        method: 'POST',
+        body: {
+          url: image
+        }
+      })
+    }
+
+    router.push('/admin/projects')
+  } catch (requestError: any) {
+    error.value = requestError?.statusMessage || 'Failed to create project'
+  } finally {
+    isSaving.value = false
   }
 
-  router.push('/admin/projects')
 
 }
 const uploadImage = async (event: Event) => {
+  error.value = ''
 
   const target = event.target as HTMLInputElement
 
@@ -49,16 +62,25 @@ const uploadImage = async (event: Event) => {
 
   formData.append('file', file)
 
-  const response = await $fetch<{ url: string }>('/api/upload', {
-    method: 'POST',
-    body: formData
-  })
+  try {
+    isUploading.value = true
 
-  form.value.coverImage = response.url
+    const response = await $fetch<{ url: string }>('/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+
+    form.value.coverImage = response.url
+  } catch (requestError: any) {
+    error.value = requestError?.statusMessage || 'Failed to upload cover image'
+  } finally {
+    isUploading.value = false
+  }
 
 }
 
 const uploadGalleryImage = async (event: Event) => {
+  error.value = ''
 
   const target = event.target as HTMLInputElement
 
@@ -72,12 +94,20 @@ const uploadGalleryImage = async (event: Event) => {
 
   formData.append('file', file)
 
-  const response = await $fetch<{ url: string }>('/api/upload', {
-    method: 'POST',
-    body: formData
-  })
+  try {
+    isUploading.value = true
 
-  galleryImages.value.push(response.url)
+    const response = await $fetch<{ url: string }>('/api/upload', {
+      method: 'POST',
+      body: formData
+    })
+
+    galleryImages.value.push(response.url)
+  } catch (requestError: any) {
+    error.value = requestError?.statusMessage || 'Failed to upload gallery image'
+  } finally {
+    isUploading.value = false
+  }
 
 }
 </script>
@@ -153,10 +183,18 @@ const uploadGalleryImage = async (event: Event) => {
 
         <button
           @click="createProject"
+          :disabled="isSaving || isUploading"
           class="px-8 py-4 bg-white text-black rounded-full font-semibold hover:opacity-80 transition"
         >
-          Create Project
+          {{ isSaving ? 'Creating' : 'Create Project' }}
         </button>
+
+        <p
+          v-if="error"
+          class="text-sm text-red-400"
+        >
+          {{ error }}
+        </p>
 
       </div>
 

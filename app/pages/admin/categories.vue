@@ -13,6 +13,8 @@ const form = ref({
 
 const error = ref('')
 const isCreating = ref(false)
+const isDeleting = ref(false)
+const categoryToDelete = ref<any | null>(null)
 
 const createCategory = async () => {
   error.value = ''
@@ -42,13 +44,35 @@ const createCategory = async () => {
 
 }
 
-const deleteCategory = async (id: number) => {
+const askDeleteCategory = (category: any) => {
+  categoryToDelete.value = category
+}
 
-  await $fetch(`/api/categories/${id}`, {
-    method: 'DELETE'
-  })
+const cancelDeleteCategory = () => {
+  if (!isDeleting.value) {
+    categoryToDelete.value = null
+  }
+}
 
-  refresh()
+const deleteCategory = async () => {
+  if (!categoryToDelete.value) {
+    return
+  }
+
+  try {
+    isDeleting.value = true
+
+    await $fetch(`/api/categories/${categoryToDelete.value.id}`, {
+      method: 'DELETE'
+    })
+
+    await refresh()
+    categoryToDelete.value = null
+  } catch (requestError: any) {
+    error.value = requestError?.statusMessage || 'Failed to delete category'
+  } finally {
+    isDeleting.value = false
+  }
 
 }
 
@@ -127,7 +151,7 @@ const deleteCategory = async (id: number) => {
   </div>
 
   <button
-    @click="deleteCategory(category.id)"
+    @click="askDeleteCategory(category)"
     class="text-red-500 hover:text-red-400"
   >
     Delete
@@ -139,5 +163,16 @@ const deleteCategory = async (id: number) => {
     </div>
 
   </div>
+
+  <ConfirmDialog
+    :open="Boolean(categoryToDelete)"
+    title="Delete category?"
+    :message="`Projects in '${categoryToDelete?.name || ''}' will stay available in All.`"
+    confirm-label="Да"
+    cancel-label="Нет"
+    :pending="isDeleting"
+    @confirm="deleteCategory"
+    @cancel="cancelDeleteCategory"
+  />
 
 </template>
