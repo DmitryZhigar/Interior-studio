@@ -1,18 +1,10 @@
-import { mkdir, writeFile } from 'node:fs/promises'
-import { basename, join } from 'node:path'
-
-const getUploadsDir = () => {
-  if (process.env.NODE_ENV === 'production') {
-    return join(process.cwd(), '.output/public/uploads')
-  }
-
-  return join(process.cwd(), 'public/uploads')
-}
-
-const sanitizeFileName = (fileName: string) =>
-  basename(fileName)
-    .replace(/[^\p{Letter}\p{Number}._-]+/gu, '-')
-    .replace(/^-+|-+$/g, '') || 'upload'
+import { writeFile } from 'node:fs/promises'
+import { join } from 'node:path'
+import {
+  ensureUploadsDir,
+  getUploadContentType,
+  sanitizeUploadFileName
+} from '~~/server/utils/uploads'
 
 export default defineEventHandler(async (event) => {
 
@@ -34,12 +26,18 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const uploadsDir = getUploadsDir()
-  const fileName = `${Date.now()}-${sanitizeFileName(file.filename)}`
+  const safeFileName = sanitizeUploadFileName(file.filename)
+  const contentType = getUploadContentType(safeFileName)
 
-  await mkdir(uploadsDir, {
-    recursive: true
-  })
+  if (!contentType) {
+    throw createError({
+      statusCode: 415,
+      statusMessage: 'Only AVIF, GIF, JPEG, PNG and WebP images are allowed'
+    })
+  }
+
+  const uploadsDir = await ensureUploadsDir()
+  const fileName = `${Date.now()}-${safeFileName}`
 
   const filePath = join(uploadsDir, fileName)
   await writeFile(filePath, file.data)
