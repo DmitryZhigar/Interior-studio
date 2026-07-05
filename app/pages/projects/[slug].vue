@@ -6,53 +6,71 @@ const { data: project } = await useFetch(
  `/api/projects/by-slug/${route.params.slug}`
 )
 
+const projectImages = computed(() => {
+  if (!project.value) {
+    return []
+  }
+
+  const coverImage = project.value.coverImage
+  const galleryImages =
+    project.value.images
+      ?.map((image: any) => image.url)
+      .filter((url: string) => url && url !== coverImage) || []
+
+  return [
+    coverImage,
+    ...galleryImages
+  ]
+})
 </script>
 
 <template>
-
   <div
     v-if="project"
-    class="min-h-screen bg-[var(--bg-main)] text-white"
+    class="-mx-4 -mt-32 bg-[var(--bg-main)] text-white lg:-mx-10"
   >
+    <section
+      v-for="(image, index) in projectImages"
+      :key="`${image}-${index}`"
+      class="group relative h-screen min-h-[620px] overflow-hidden border-b border-[var(--border-color)]"
+    >
+      <img
+        :src="image"
+        :alt="index === 0 ? project.title : `${project.title} ${index}`"
+        class="h-full w-full object-cover transition duration-[1200ms] ease-out group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+      />
 
-    <img
-      :src="project.coverImage"
-      class="w-full h-[500px] object-cover"
-    />
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/40" />
 
-    <div class="max-w-6xl mx-auto px-10 py-20">
-
-      <p
-        v-if="project.category"
-        class="uppercase tracking-[0.4em] text-neutral-500 mb-4"
+      <div
+        v-if="index === 0"
+        class="absolute inset-x-0 bottom-0 px-6 pb-12 pt-36 sm:px-10 md:pb-16 lg:px-20"
       >
-        {{ project.category?.name }}
-      </p>
+        <p
+          v-if="project.category"
+          class="mb-5 text-xs uppercase tracking-[0.4em] text-neutral-300"
+        >
+          {{ project.category?.name }}
+        </p>
 
-      <p
-        v-if="project.category?.description"
-        class="text-neutral-400 text-lg leading-relaxed max-w-3xl mb-8"
-      >
-        {{ project.category.description }}
-      </p>
+        <h1 class="max-w-5xl text-5xl font-black leading-[0.95] text-white sm:text-6xl lg:text-8xl">
+          {{ project.title }}
+        </h1>
 
-      <h1 class="text-6xl font-black mb-6">
-        {{ project.title }}
-      </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-        <img
-          v-for="image in project.images"
-          :key="image.id"
-          :src="image.url"
-          class="w-full h-[400px] object-cover rounded-3xl"
-        />
-
+        <p
+          v-if="project.description"
+          class="mt-8 max-w-3xl text-base leading-relaxed text-neutral-200 sm:text-lg"
+        >
+          {{ project.description }}
+        </p>
       </div>
 
-    </div>
-
+      <div
+        v-else
+        class="absolute bottom-6 right-6 text-xs font-bold uppercase tracking-[0.3em] text-white/70 sm:bottom-10 sm:right-10"
+      >
+        {{ String(index + 1).padStart(2, '0') }}
+      </div>
+    </section>
   </div>
-
 </template>
