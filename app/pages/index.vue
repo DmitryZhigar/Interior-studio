@@ -82,11 +82,11 @@ onBeforeUnmount(() => {
       <img
         src="/images/home-interior-hero.jpg"
         alt=""
-        class="absolute inset-0 h-full w-full object-cover"
+        class="absolute inset-0 h-full w-full object-cover brightness-110"
       />
 
-      <div class="absolute inset-0 bg-black/55" />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-[#0b0b0c]" />
+      <div class="absolute inset-0 bg-black/30" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/35 via-black/10 to-[#0b0b0c]/90" />
 
       <div class="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-end px-6 pb-20 pt-40 lg:px-10 lg:pb-28">
         <p class="mb-8 uppercase tracking-[0.4em] text-neutral-300">
