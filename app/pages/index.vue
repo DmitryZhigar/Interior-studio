@@ -74,41 +74,53 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto">
+  <div>
     <section
       ref="heroRef"
-      class="min-h-[90vh] flex flex-col justify-center"
+      class="relative -mx-4 -mt-32 min-h-screen overflow-hidden border-b border-[var(--border-color)] lg:-mx-10"
     >
-      <p class="uppercase tracking-[0.4em] text-neutral-500 mb-8">
-        {{ t('home.eyebrow') }}
-      </p>
+      <img
+        src="/images/home-interior-hero.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover"
+      />
 
-      <h1 class="text-6xl md:text-8xl lg:text-[140px] font-black leading-[0.9] mb-10">
-        {{ t('home.titleLine1') }}<br />
-        {{ t('home.titleLine2') }}<br />
-        {{ t('home.titleLine3') }}
-      </h1>
+      <div class="absolute inset-0 bg-black/55" />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-[#0b0b0c]" />
 
-      <div class="max-w-2xl">
-        <p class="text-xl md:text-2xl text-neutral-300 leading-relaxed mb-10">
-          {{ t('home.intro') }}
+      <div class="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-end px-6 pb-20 pt-40 lg:px-10 lg:pb-28">
+        <p class="mb-8 uppercase tracking-[0.4em] text-neutral-300">
+          {{ t('home.eyebrow') }}
         </p>
 
-        <button
-          type="button"
-          class="inline-flex h-14 items-center justify-center rounded-md border border-[var(--border-color)] bg-white/[0.06] px-8 text-sm font-bold uppercase tracking-[0.22em] text-white transition hover:border-white/20 hover:bg-white/[0.12]"
-          @click="openEstimate"
-        >
-          {{ t('home.estimateCta') }}
-        </button>
-        
-        <NuxtLink
-          to="/projects"
-          style="margin-left: 10px;"
-          class="inline-flex h-14 items-center justify-center rounded-md border border-[var(--border-color)] bg-white/[0.06] px-8 text-sm font-bold uppercase tracking-[0.22em] text-white transition hover:border-white/20 hover:bg-white/[0.12]"
-        >
-          {{ t('home.cta') }}
-        </NuxtLink>
+        <h1 class="mb-10 text-6xl font-black leading-[0.9] text-white md:text-8xl lg:text-[140px]">
+          {{ t('home.titleLine1') }}<br />
+          {{ t('home.titleLine2') }}<br />
+          {{ t('home.titleLine3') }}
+        </h1>
+
+        <div class="max-w-2xl">
+          <p class="mb-10 text-xl leading-relaxed text-neutral-200 md:text-2xl">
+            {{ t('home.intro') }}
+          </p>
+
+          <div class="flex flex-wrap gap-3 sm:gap-4">
+            <button
+              type="button"
+              class="inline-flex h-14 items-center justify-center rounded-md border border-white/20 bg-white/[0.08] px-8 text-sm font-bold uppercase tracking-[0.22em] text-white transition hover:border-white/30 hover:bg-white/[0.16]"
+              @click="openEstimate"
+            >
+              {{ t('home.estimateCta') }}
+            </button>
+            
+            <NuxtLink
+              to="/projects"
+              class="inline-flex h-14 items-center justify-center rounded-md border border-white/20 bg-white/[0.08] px-8 text-sm font-bold uppercase tracking-[0.22em] text-white transition hover:border-white/30 hover:bg-white/[0.16]"
+            >
+              {{ t('home.cta') }}
+            </NuxtLink>
+          </div>
+        </div>
       </div>
     </section>
 
