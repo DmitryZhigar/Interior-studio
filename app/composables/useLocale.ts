@@ -178,7 +178,7 @@ const translations: Record<LocaleCode, TranslationTree> = {
       nameLabel: 'Введите ваше имя',
       namePlaceholder: 'Ваше имя',
       phoneLabel: 'Введите ваш номер телефона',
-      phonePlaceholder: '+995 500 50 82 82',
+      phonePlaceholder: '+995 599 00 44 76',
       consent: 'Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных.',
       submit: 'Отправить',
       sending: 'Отправляем...',
@@ -476,7 +476,7 @@ export const useLocale = () => {
     currentLocale,
     setLocale,
     t,
-    phoneNumber: '+995 500 50 82 82',
+    phoneNumber: '+995 599 00 44 76',
     phoneHref: 'tel:+995500508282'
   }
 }
