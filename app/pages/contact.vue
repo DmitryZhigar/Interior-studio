@@ -81,7 +81,7 @@ const sendRequest = async () => {
             </p>
 
             <p class="text-2xl font-semibold">
-              hello@studio.com
+              sgrigorev353@gmail.com
             </p>
           </div>
 
