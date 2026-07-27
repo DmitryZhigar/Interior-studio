@@ -23,7 +23,7 @@ const { t, phoneNumber } = useLocale()
 
           <div class="space-y-4">
             <p class="text-lg">
-              hello@studio.com
+              sgrigorev353@gmail.com
             </p>
 
             <p class="text-lg">
