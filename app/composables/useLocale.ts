@@ -156,7 +156,7 @@ const translations: Record<LocaleCode, TranslationTree> = {
     },
     home: {
       eyebrow: 'Интерьерная студия',
-      titleLine1: 'Кинематографичный',
+      titleLine1: 'Неплохой',
       titleLine2: 'интерьерный',
       titleLine3: 'дизайн',
       intro: 'Премиальные интерьеры для отелей, офисов, жилых и hospitality-пространств.',
