@@ -1,5 +1,8 @@
 <script setup lang="ts">
 const { t, phoneNumber } = useLocale()
+import { getRequestErrorMessage } from '~/composables/useRequestErrorMessage'
+
+const contactEmail = 'sgrigorev353@gmail.com'
 
 const form = ref({
   name: '',
@@ -10,8 +13,11 @@ const form = ref({
 const loading = ref(false)
 
 const success = ref(false)
+const errorMessage = ref('')
 
 const sendRequest = async () => {
+  errorMessage.value = ''
+  success.value = false
 
   try {
 
@@ -33,6 +39,7 @@ const sendRequest = async () => {
   } catch (error) {
 
     console.error(error)
+    errorMessage.value = getRequestErrorMessage(error, 'Failed to send request')
 
   } finally {
 
@@ -122,6 +129,7 @@ const sendRequest = async () => {
           <input
             v-model="form.name"
             type="text"
+            required
             :placeholder="t('contact.namePlaceholder')"
             class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
@@ -129,6 +137,7 @@ const sendRequest = async () => {
           <input
             v-model="form.email"
             type="email"
+            required
             :placeholder="t('contact.emailPlaceholder')"
             class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
@@ -136,6 +145,7 @@ const sendRequest = async () => {
           <textarea
             v-model="form.message"
             rows="6"
+            required
             :placeholder="t('contact.messagePlaceholder')"
             class="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl px-6 py-5 outline-none"
           />
@@ -153,6 +163,13 @@ const sendRequest = async () => {
             class="text-green-500 text-sm"
           >
             {{ t('contact.success') }}
+          </p>
+
+          <p
+            v-if="errorMessage"
+            class="text-red-400 text-sm"
+          >
+            {{ errorMessage }}
           </p>
 
         </form>

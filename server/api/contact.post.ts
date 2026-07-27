@@ -1,5 +1,7 @@
 import { Resend } from 'resend'
 
+const defaultContactToEmail = 'sgrigorev353@gmail.com'
+
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, '&amp;')
@@ -25,6 +27,14 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig()
   const resendApiKey = process.env.RESEND_API_KEY || config.resendApiKey
+  const resendFromEmail =
+    process.env.RESEND_FROM_EMAIL ||
+    config.resendFromEmail ||
+    'onboarding@resend.dev'
+  const contactToEmail =
+    process.env.CONTACT_TO_EMAIL ||
+    config.contactToEmail ||
+    defaultContactToEmail
 
   if (!resendApiKey) {
     throw createError({
@@ -35,10 +45,11 @@ export default defineEventHandler(async (event) => {
 
   const resend = new Resend(resendApiKey)
 
-  await resend.emails.send({
-    from: 'onboarding@resend.dev',
-    to: 'dmitry.zhigar@Gmail.com',
+  const result = await resend.emails.send({
+    from: resendFromEmail,
+    to: contactToEmail,
     subject: `New request from ${name}`,
+    replyTo: email || undefined,
     html: `
       <h1>New Contact Request</h1>
       <p><b>Name:</b> ${escapeHtml(name)}</p>
@@ -48,7 +59,17 @@ export default defineEventHandler(async (event) => {
     `
   })
 
+  if (result.error) {
+    console.error('Failed to send contact email', result.error)
+
+    throw createError({
+      statusCode: result.error.statusCode || 502,
+      statusMessage: result.error.message || 'Failed to send email'
+    })
+  }
+
   return {
-    success: true
+    success: true,
+    id: result.data?.id
   }
 })

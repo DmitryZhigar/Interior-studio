@@ -13,6 +13,8 @@ export default defineNuxtConfig({
     adminLogin: '',
     adminPassword: '',
     adminSessionSecret: '',
-    resendApiKey: ''
+    resendApiKey: '',
+    resendFromEmail: '',
+    contactToEmail: ''
   }
 })
