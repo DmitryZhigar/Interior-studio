@@ -208,7 +208,7 @@ const translations: Record<LocaleCode, TranslationTree> = {
       email: 'Email',
       phone: 'Телефон',
       location: 'Локация',
-      locationValue: 'Прага, Чехия',
+      locationValue: 'Тбилиси, Грузия',
       namePlaceholder: 'Ваше имя',
       emailPlaceholder: 'Email',
       messagePlaceholder: 'Расскажите о проекте',
